@@ -4,45 +4,35 @@ using UnityEngine;
 
 public class Fixation : MonoBehaviour
 {
-    public float fixationDuration = 0.65f; // in seconds
-    private float timer = 0.0f;
-    private bool fixationStarted = false;
+    public GameObject fixationObject;
+    public float fixationTime = 0.65f; // in seconds
+    private bool isFixationActive = false;
     
     void Start()
     {
-        gameObject.SetActive(false);
+        fixationObject.SetActive(false);
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        // Check if fixation has started
-        if (fixationStarted)
-        {
-            // Increment timer
-            timer += Time.deltaTime;
-
-            // Check if fixation duration has elapsed
-            if (timer >= fixationDuration)
-            {
-                // Fixation completed, do something
-                gameObject.SetActive(false);
-                Debug.Log("Fixation completed!");
-                fixationStarted = false;
-            }
-        }
-        else
-        {
-            // Fixation hasn't started yet, start it now
-            Debug.Log("Starting fixation...");
-            gameObject.SetActive(true);
-            fixationStarted = true;
-            timer = 0.0f;
-        }
+        //
     }
 
-    public void FixCross()
+    public void ActivateFixation()
     {
-        fixationStarted = true;
+        isFixationActive = true;
+        Debug.Log("Fixation active");
+        fixationObject.SetActive(true);
+        // Start the timer
+        Invoke("DeactivateFixation", fixationTime);
+    }
+    
+    void DeactivateFixation()
+    {
+        // Deactivate the fixation object
+        fixationObject.SetActive(false);
+        Debug.Log("Fixation is over");
+        isFixationActive = false;
     }
 }

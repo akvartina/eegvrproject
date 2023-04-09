@@ -347,6 +347,8 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/Fixation.cs"
 "Assets/Scripts/ModifyText.cs"
+"Assets/Scripts/TimeManager.cs"
+"Assets/Scripts/WriteCSV.cs"
 -langversion:9.0
 
 /deterministic
